@@ -1,11 +1,10 @@
-﻿# MLForge â€” Production ML Lifecycle Platform
+﻿# MLForge — Production ML Lifecycle Platform
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange?logo=scikitlearn&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-2.0-orange)
 ![MLflow](https://img.shields.io/badge/MLflow-Model_Tracking-0194E2?logo=mlflow&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green)
 
 **MLForge** is an end-to-end MLOps project demonstrating how to train, track, register, serve, and monitor machine-learning models through a structured lifecycle.
 
@@ -28,7 +27,7 @@ The project uses the UCI Adult Income dataset and an XGBoost classifier, with ML
 
 **Dataset:** UCI Adult Income  
 **Samples:** 48,842  
-**Validation split:** 4,885 samples
+**Validation samples:** 4,885
 
 Latest recorded validation results:
 
@@ -47,7 +46,7 @@ Experiments, parameters, metrics, and model artifacts are tracked with MLflow.
 
 ## Architecture
 
-### Training and model registry
+### Training and Model Registry
 
 ```mermaid
 flowchart TD
@@ -61,7 +60,7 @@ flowchart TD
     H --> I[Production Model]
 ```
 
-### Model serving and monitoring
+### Model Serving and Monitoring
 
 ```mermaid
 flowchart TD
@@ -85,14 +84,14 @@ flowchart TD
 | Machine learning | Scikit-learn, XGBoost |
 | Experiment tracking | MLflow |
 | Model serving | FastAPI, Uvicorn |
-| Validation | Pytest |
+| Testing | Pytest |
 | Monitoring | Prometheus, Grafana |
 | Infrastructure | Docker Compose |
 
-
 ## Project Structure
 
-mlforge/
+```text
+MLForge/
 |
 |-- src/
 |   |-- data/           # Data loading and validation
@@ -104,24 +103,27 @@ mlforge/
 |   `-- pipelines/      # Training and retraining pipelines
 |
 |-- tests/              # Automated tests
+|
 |-- monitoring/         # Prometheus and Grafana configuration
-|-- data/               # Generated datasets and splits
+|
+|-- Dockerfile
 |-- docker-compose.yml
 |-- Makefile
 |-- requirements.txt
+|-- .env.example
 `-- README.md
-
+```
 
 ## Getting Started
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/khushi-149/MLForge.git
-cd mlforge-main
+cd MLForge
 ```
 
-### 2. Create a virtual environment
+### 2. Create a Virtual Environment
 
 Windows PowerShell:
 
@@ -130,26 +132,27 @@ py -3.11 -m venv venv
 .\venv\Scripts\Activate.ps1
 ```
 
-### 3. Install dependencies
+### 3. Install Dependencies
 
 ```powershell
 python -m pip install -r requirements.txt
 ```
 
-### 4. Start the MLflow tracking server
+### 4. Start the MLflow Tracking Server
 
-In a separate terminal:
+Open a separate terminal:
 
 ```powershell
 mlflow server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlartifacts
 ```
 
-### 5. Train the model
+### 5. Train the Model
 
-In another terminal, with the virtual environment activated:
+In another terminal, activate the virtual environment:
 
 ```powershell
 $env:MLFLOW_TRACKING_URI = "http://127.0.0.1:5000"
+
 python -m src.pipelines.train_pipeline --experiment adult-income --output-dir data
 ```
 
@@ -159,21 +162,18 @@ python -m src.pipelines.train_pipeline --experiment adult-income --output-dir da
 uvicorn src.serving.app:app --host 127.0.0.1 --port 8000
 ```
 
-API documentation:
+### Access the Application
 
-`http://127.0.0.1:8000/docs`
-
-Health endpoint:
-
-`http://127.0.0.1:8000/health`
-
-Prometheus metrics:
-
-`http://127.0.0.1:8000/metrics`
+| Service | URL |
+|---|---|
+| API documentation | http://127.0.0.1:8000/docs |
+| Health check | http://127.0.0.1:8000/health |
+| Prometheus metrics | http://127.0.0.1:8000/metrics |
+| MLflow UI | http://127.0.0.1:5000 |
 
 ## API Reference
 
-### `POST /predict`
+### POST `/predict`
 
 Accepts a feature dictionary and returns a prediction response.
 
@@ -190,9 +190,9 @@ Example request structure:
 }
 ```
 
-The feature dictionary should contain the complete set of features expected by the trained model.
+The feature dictionary must contain all features expected by the trained model.
 
-### Other endpoints
+### Other Endpoints
 
 | Endpoint | Purpose |
 |---|---|
@@ -208,15 +208,15 @@ MLForge includes statistical approaches to monitor changes in incoming feature d
 | Method | Purpose |
 |---|---|
 | Population Stability Index (PSI) | Quantifies distribution changes |
-| Kolmogorovâ€“Smirnov test | Detects numerical distribution differences |
+| Kolmogorov-Smirnov test | Detects numerical distribution differences |
 | Chi-squared test | Tests categorical distribution differences |
 
 PSI thresholds are configurable:
 
-| PSI | Interpretation |
+| PSI Range | Interpretation |
 |---|---|
 | Below 0.1 | Low drift |
-| 0.1â€“0.2 | Moderate drift |
+| 0.1–0.2 | Moderate drift |
 | Above 0.2 | Significant drift |
 
 Drift results can be used to inform retraining decisions.
@@ -256,7 +256,7 @@ A Docker Compose configuration is included for the supporting infrastructure:
 - Prometheus
 - Grafana
 
-Start the services on a machine with Docker Compose installed:
+On a machine with Docker Compose installed, start the services using:
 
 ```bash
 docker compose up --build -d
@@ -269,3 +269,7 @@ docker compose up --build -d
 - More extensive model performance monitoring
 - Automated model rollback
 - Additional model comparison strategies
+
+## Repository
+
+GitHub: https://github.com/khushi-149/MLForge
