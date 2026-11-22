@@ -1,4 +1,4 @@
-# MLForge — Production ML Lifecycle Platform
+﻿# MLForge â€” Production ML Lifecycle Platform
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange?logo=scikitlearn&logoColor=white)
@@ -93,21 +93,21 @@ flowchart TD
 
 ```text
 mlforge/
-├── src/
-│   ├── data/           # Data loading and validation
-│   ├── features/       # Feature preprocessing
-│   ├── training/      # Model training and experiment tracking
-│   ├── registry/      # Model registration and promotion
-│   ├── serving/       # FastAPI and canary routing
-│   ├── monitoring/    # Drift detection and retraining logic
-│   └── pipelines/     # Training and retraining pipelines
-├── tests/              # Automated tests
-├── monitoring/         # Prometheus and Grafana configuration
-├── data/               # Generated datasets and splits
-├── docker-compose.yml
-├── Makefile
-├── requirements.txt
-└── README.md
+â”œâ”€â”€ src/
+â”‚   â”œâ”€â”€ data/           # Data loading and validation
+â”‚   â”œâ”€â”€ features/       # Feature preprocessing
+â”‚   â”œâ”€â”€ training/      # Model training and experiment tracking
+â”‚   â”œâ”€â”€ registry/      # Model registration and promotion
+â”‚   â”œâ”€â”€ serving/       # FastAPI and canary routing
+â”‚   â”œâ”€â”€ monitoring/    # Drift detection and retraining logic
+â”‚   â””â”€â”€ pipelines/     # Training and retraining pipelines
+â”œâ”€â”€ tests/              # Automated tests
+â”œâ”€â”€ monitoring/         # Prometheus and Grafana configuration
+â”œâ”€â”€ data/               # Generated datasets and splits
+â”œâ”€â”€ docker-compose.yml
+â”œâ”€â”€ Makefile
+â”œâ”€â”€ requirements.txt
+â””â”€â”€ README.md
 ```
 
 ## Getting Started
@@ -115,7 +115,7 @@ mlforge/
 ### 1. Clone the repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/khushi-149/MLForge.git
 cd mlforge-main
 ```
 
@@ -206,7 +206,7 @@ MLForge includes statistical approaches to monitor changes in incoming feature d
 | Method | Purpose |
 |---|---|
 | Population Stability Index (PSI) | Quantifies distribution changes |
-| Kolmogorov–Smirnov test | Detects numerical distribution differences |
+| Kolmogorovâ€“Smirnov test | Detects numerical distribution differences |
 | Chi-squared test | Tests categorical distribution differences |
 
 PSI thresholds are configurable:
@@ -214,7 +214,7 @@ PSI thresholds are configurable:
 | PSI | Interpretation |
 |---|---|
 | Below 0.1 | Low drift |
-| 0.1–0.2 | Moderate drift |
+| 0.1â€“0.2 | Moderate drift |
 | Above 0.2 | Significant drift |
 
 Drift results can be used to inform retraining decisions.
@@ -267,7 +267,3 @@ docker compose up --build -d
 - More extensive model performance monitoring
 - Automated model rollback
 - Additional model comparison strategies
-
-## License
-
-This project is distributed under the MIT License. See the `LICENSE` file for the full license text and required attribution.
