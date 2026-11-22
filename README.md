@@ -89,26 +89,28 @@ flowchart TD
 | Monitoring | Prometheus, Grafana |
 | Infrastructure | Docker Compose |
 
+
 ## Project Structure
 
-```text
 mlforge/
-â”œâ”€â”€ src/
-â”‚   â”œâ”€â”€ data/           # Data loading and validation
-â”‚   â”œâ”€â”€ features/       # Feature preprocessing
-â”‚   â”œâ”€â”€ training/      # Model training and experiment tracking
-â”‚   â”œâ”€â”€ registry/      # Model registration and promotion
-â”‚   â”œâ”€â”€ serving/       # FastAPI and canary routing
-â”‚   â”œâ”€â”€ monitoring/    # Drift detection and retraining logic
-â”‚   â””â”€â”€ pipelines/     # Training and retraining pipelines
-â”œâ”€â”€ tests/              # Automated tests
-â”œâ”€â”€ monitoring/         # Prometheus and Grafana configuration
-â”œâ”€â”€ data/               # Generated datasets and splits
-â”œâ”€â”€ docker-compose.yml
-â”œâ”€â”€ Makefile
-â”œâ”€â”€ requirements.txt
-â””â”€â”€ README.md
-```
+|
+|-- src/
+|   |-- data/           # Data loading and validation
+|   |-- features/       # Feature preprocessing
+|   |-- training/       # Model training and experiment tracking
+|   |-- registry/       # Model registration and promotion
+|   |-- serving/        # FastAPI and canary routing
+|   |-- monitoring/     # Drift detection and retraining logic
+|   `-- pipelines/      # Training and retraining pipelines
+|
+|-- tests/              # Automated tests
+|-- monitoring/         # Prometheus and Grafana configuration
+|-- data/               # Generated datasets and splits
+|-- docker-compose.yml
+|-- Makefile
+|-- requirements.txt
+`-- README.md
+
 
 ## Getting Started
 
